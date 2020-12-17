@@ -1,0 +1,11 @@
+policy_module(fail2ban_containers_access, 1.0)
+require {
+  type fail2ban_t;
+  type container_var_lib_t;
+  type container_file_t;
+}
+
+allow fail2ban_t container_file_t:dir { getattr read search };
+allow fail2ban_t container_file_t:file { getattr open read };
+allow fail2ban_t container_var_lib_t:dir { getattr read search };
+allow fail2ban_t container_var_lib_t:file { getattr open read };
